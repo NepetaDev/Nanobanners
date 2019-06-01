@@ -81,7 +81,7 @@ void fakeBanner() {
     }
 
     if (!self.nanoView) {
-        self.nanoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        self.nanoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 34)];
         self.nanoView.backgroundColor = [UIColor blackColor];
         self.nanoView.layer.cornerRadius = 2.5;
         self.nanoView.layer.masksToBounds = YES;
@@ -92,7 +92,7 @@ void fakeBanner() {
             [self.nanoView.topAnchor constraintEqualToAnchor:self.topAnchor constant:0],
             [self.nanoView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:0],
             [self.nanoView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:0],
-            [self.nanoView.heightAnchor constraintEqualToConstant:30]
+            [self.nanoView.heightAnchor constraintEqualToConstant:34]
         ]];
     }
 
@@ -117,11 +117,12 @@ void fakeBanner() {
         self.nanoStackView.axis = UILayoutConstraintAxisHorizontal;
         self.nanoStackView.spacing = 5.0;
         self.nanoStackView.layoutMarginsRelativeArrangement = YES;
-        self.nanoStackView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(5.0, 3.0, 5.0, 3.0);
+        self.nanoStackView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
         [self.nanoMarqueeView.contentView addSubview:self.nanoStackView];
 
         [NSLayoutConstraint activateConstraints:@[
-            [self.nanoStackView.topAnchor constraintEqualToAnchor:self.nanoMarqueeView.contentView.topAnchor]
+            [self.nanoStackView.topAnchor constraintEqualToAnchor:self.nanoMarqueeView.contentView.topAnchor],
+            [self.nanoStackView.bottomAnchor constraintEqualToAnchor:self.nanoMarqueeView.contentView.bottomAnchor]
         ]];
     }
 
@@ -244,6 +245,8 @@ void fakeBanner() {
     [self.nanoMarqueeView setMarqueeEnabled:YES];
     [self.nanoMarqueeView setNeedsLayout];
     [self.nanoMarqueeView layoutIfNeeded];
+    [self.nanoView setNeedsLayout];
+    [self.nanoView layoutIfNeeded];
 }
 
 %end
