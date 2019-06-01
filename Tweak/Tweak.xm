@@ -173,16 +173,26 @@ void fakeBanner() {
         [self.nanoStackView addArrangedSubview:self.nanoTextLabel];
     }
 
+    if (content.message) {
+        NSString *isoLangCode = (__bridge_transfer NSString*)CFStringTokenizerCopyBestStringLanguage((__bridge CFStringRef)content.message, CFRangeMake(0, content.message.length));
+        NSLocaleLanguageDirection direction = [NSLocale characterDirectionForLanguage:isoLangCode];
+        if (direction == NSLocaleLanguageDirectionRightToLeft) {
+            isLTR = NO;
+        }
+    }
+
     CGSize stackViewSize = [self.nanoStackView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
     [self.nanoStackView setFrame:CGRectMake(0, 0, stackViewSize.width, stackViewSize.height)];
 
     if (isLTR) {
-        self.nanoStackView.semanticContentAttribute = UISemanticContentAttributeForceLeftToRight;
         self.nanoMarqueeView.animationDirection = 0;
+        self.nanoStackView.semanticContentAttribute = UISemanticContentAttributeForceLeftToRight;
+        self.nanoMarqueeView.semanticContentAttribute = UISemanticContentAttributeForceLeftToRight;
     } else {
-        self.nanoStackView.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
         self.nanoStackView.frame = CGRectMake(self.nanoMarqueeView.frame.size.width - stackViewSize.width, 0, stackViewSize.width, stackViewSize.height);
         self.nanoMarqueeView.animationDirection = 1;
+        self.nanoStackView.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
+        self.nanoMarqueeView.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
     }
 
     if ([self respondsToSelector:@selector(ntfConfig)]) {
