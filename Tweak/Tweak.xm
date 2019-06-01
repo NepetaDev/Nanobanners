@@ -181,6 +181,9 @@ void fakeBanner() {
         }
     }
 
+    [self.nanoStackView setNeedsLayout];
+    [self.nanoStackView layoutIfNeeded];
+
     CGSize stackViewSize = [self.nanoStackView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize];
     [self.nanoStackView setFrame:CGRectMake(0, 0, stackViewSize.width, stackViewSize.height)];
 
@@ -239,6 +242,8 @@ void fakeBanner() {
     [self.nanoMarqueeView setContentSize:stackViewSize];
     [self.nanoMarqueeView invalidateIntrinsicContentSize];
     [self.nanoMarqueeView setMarqueeEnabled:YES];
+    [self.nanoMarqueeView setNeedsLayout];
+    [self.nanoMarqueeView layoutIfNeeded];
 }
 
 %end
