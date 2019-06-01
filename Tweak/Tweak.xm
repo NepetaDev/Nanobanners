@@ -82,7 +82,7 @@ void fakeBanner() {
 
     if (!self.nanoView) {
         self.nanoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 34)];
-        self.nanoView.backgroundColor = [UIColor blackColor];
+        self.nanoView.backgroundColor = [UIColor colorWithWhite:0.10 alpha:1];
         self.nanoView.layer.cornerRadius = 2.5;
         self.nanoView.layer.masksToBounds = YES;
         [self addSubview:self.nanoView];
@@ -240,6 +240,7 @@ void fakeBanner() {
             }
         }
 
+        self.nanoView.layer.cornerRadius = [config cornerRadius];
         self.nanoIconView.hidden = [config hideIcon];
         self.nanoAppLabel.hidden = [config hideAppName];
     }
