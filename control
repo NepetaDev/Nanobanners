@@ -1,7 +1,7 @@
 Package: me.nepeta.nanobanners
 Name: Nanobanners
 Depends: mobilesubstrate, ws.hbang.common (>= 1.11), firmware (>= 11.0)
-Version: 0.1.1
+Version: 0.1.2
 Architecture: iphoneos-arm
 Description: Small banners
 Maintainer: Nepeta
