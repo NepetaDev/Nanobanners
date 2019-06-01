@@ -159,7 +159,13 @@ void fakeBanner() {
 
     if (!self.nanoTextLabel && content.message) {
         self.nanoTextLabel = [[UILabel alloc] initWithFrame:self.nanoMarqueeView.bounds];
-        self.nanoTextLabel.text = content.message;
+        
+        if (content.title) {
+            self.nanoTextLabel.text = [NSString stringWithFormat:@"%@: %@", content.title, content.message];
+        } else {
+            self.nanoTextLabel.text = content.message;
+        }
+
         self.nanoTextLabel.font = [UIFont systemFontOfSize:14];
         self.nanoTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.nanoTextLabel.textColor = [UIColor whiteColor];
